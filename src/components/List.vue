@@ -1,15 +1,11 @@
 <template>
       <div class="cardC">
         <div class="search">
-
          <input type="text" v-model="search" placeholder="Digite para pesquisar" >
          <button class="button" v-on:click="sort()">ORDENAR</button>
       </div>
         <div v-if="this.info" class="conteiner" >
             <div  v-for="item in filtrado" :key="item.message" class="card" >
-              <div class="img" >
-                <img :src='item[2]' alt="avatar" >
-              </div>
               <div class="textInfo">
               <h4>NAME: {{ item[0] }}</h4>
               <p>LOCATION: {{ item[1] }}</p>
