@@ -12,8 +12,8 @@
               </div>
               <div class="textInfo">
               <h4>NAME: {{ item[0] }}</h4>
-              <p>LOCATION: {{ item[1] }}</p>
-              <p>EPISODES: {{ item[3][0].name }}</p>  
+              <p>LOC: {{ item[1] }}</p>
+              <p>EP'S: {{ item[3][0].name }}</p>  
               </div>
             </div>
         </div>
