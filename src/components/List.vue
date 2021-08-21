@@ -95,7 +95,7 @@ export default {
   computed: {
     filtrado: function(){
       return this.dataView.filter((b) => {
-          return b[0].toLowerCase().match(this.search)
+          return b[0].toLowerCase().match(this.search.toLowerCase())
         })
     }
   }
