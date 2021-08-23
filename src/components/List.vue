@@ -1,17 +1,36 @@
 <template>
       <div class="cardC">
         <div class="search">
+
+         <button class="button" v-on:click="sort()">Ordenar</button>
          <input type="text" v-model="search" placeholder="Digite para pesquisar" >
-         <button class="button" v-on:click="sort()">ORDENAR</button>
       </div>
+        
+      
+       
         <div v-if="this.info" class="conteiner" >
-            <div  v-for="item in filtrado" :key="item.message" class="card" >
-              <div class="textInfo">
-              <h4>NAME: {{ item[0] }}</h4>
-              <p>LOCATION: {{ item[1] }}</p>
-              <p>EPISODES: {{ item[3][0].name }}</p>  
+            <div  v-for="item in filtrado" :key="item[0]" class="card" >
+                          <div class='imgtext'>
+                          <div class='text'>
+                          <div class="textInfo">
+                    <h2>{{item[0]}}</h2><br>
+                    <h4>Data de Lançamento: </h4>
+                    <h3> {{item[1]}}</h3>
+                    <button class="button" v-on:click="botao = !botao">Personagens</button>
+                          </div>
+                          </div>
+                          </div>
+
+                  <div class='ep' v-if="botao">
+                        <h5>Personagens:</h5><br>
+                      <p v-for="(ep, index) in item[2]" :key="ep.name"> 
+                      {{ item[2][index].name }}
+                      </p> 
+                      
+                      </div>
+                      
+                      
               </div>
-            </div>
         </div>
       </div>
       
@@ -29,6 +48,7 @@ export default {
   data: function (){
     return {
       dataView: [],
+      botao: false,
       search: '',
       info: [],
       infoSorted: [],
@@ -45,6 +65,10 @@ export default {
 
 
 
+
+    },
+    btn: function () {
+      this.botao = true;
 
     },
     sort: function () {
@@ -66,7 +90,6 @@ export default {
     }, async created() {
       let array = []
       let arraySort = []
-      console.log("_________RESQUEST_______")
         try {
           
           let result =  await axios({
@@ -76,14 +99,18 @@ export default {
                 query: 
                 `{ characters (page: 0, filter: { name: "" }) { results { name image origin { name } episode { name } } } episodes (page: 0, filter: { name: "" }) { results { name air_date characters { name } } } }`
               }});
-          let data = result.data.data.characters.results
+          let data = result.data.data.episodes.results
+        
+
           data.forEach( (elemento) => {
-                let arrModel = [elemento.name, elemento.origin.name, elemento.image, elemento.episode]
+                let arrModel = [elemento.name, elemento.air_date, elemento.characters]
                 array.push(arrModel)
               })
+          console.log(array)
           array.forEach(e => {
             arraySort.push(e)
           })
+          
           
           this.info = array
           this.dataView = this.info
@@ -111,9 +138,29 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
 }
-.img img{
-  width: 130px;
+.ep{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+.ep p{
+  font-size: 15px;
+}
+img:hover{
+  cursor: pointer;
+}
+img{
+  width: 250px;
   max-height:100%; 
+  border-radius: 3px;
+  box-shadow: 0px 0px 15px #a0e743;
+}
+.imgtext{
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+  justify-content: center;
 }
 .cardC{
   display: flex;
@@ -128,50 +175,61 @@ export default {
   align-items: center;
   width: 50%;
 }
+.search  input.active {
+  border-color:     #a0e743;
+}
 .search input{
-  color: red;
+  color: #a0e743;
+  background-color: #080808;
   height: 40px;
   font-size: 20px;
   width: 70%;
-  border-color: cyan;
-  border-width: 6px;
+  border-color: #a0e743;
+  border-width: 1px;
 }
 .button{
   margin: 1.8vh;
   padding: 1.5vh;
-  color: cyan;
-  width: 150px;
-  background-color: rgb(20, 20, 20);
+  color: #a0e743;
+  width: 130px;
+  background-color: #080808;
   font-weight: 600;
   letter-spacing: 2px;
   text-align: center;
+  border: 1px solid #a0e743; 
+}
+.text{
+  display: flex;
+
 }
 .textInfo{
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 10px;
   color: rgb(0, 0, 0);
-  align-items: flex-start;
   font-size: 13px;
   font-weight: 600;
   max-height: 100%;
-  justify-content: space-around;
 }
-h1, h2, h3, h4, p {
-  padding: 0px;
+h1, h2, h3, h4, h5, p {
+  padding: 5px;
   margin: 0px;
-  color: cyan;
+  color: #a0e743;
 }
 .card{
-  
-  display: flex;
+  border: 1.5px solid #a0e743;
+  align-items: center;
   width: 280px;
-  border-radius: 20px;
   padding: 20px;
-  background-color: rgb(41, 39, 39);
+  border-radius: 2px;
+  background-color: #202020;
   margin: 15px;
-  box-shadow: 3px 6px cyan;
   
+}
+.card:hover{
+  border: 1.5px solid#FF6937;
+  background-color: #0A0A0A;
 }
 li {
   color: pink;

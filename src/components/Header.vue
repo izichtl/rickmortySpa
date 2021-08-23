@@ -1,15 +1,15 @@
 <template>
   <div class="hello">
     <div class="topnav">
-      <a class="active" href="#home">RickMory DashBord</a>
+      <a class="active" href="#home">RickMory DashBoard</a>
        <router-link to="/">Personagens</router-link>
-       <router-link to="/about">Episódios</router-link> 
+       <router-link to="/ep">Episódios</router-link> 
     </div>
   </div>
 </template>
 
 <script>
-
+document.title = 'RickMorty DB'
 
 
 
@@ -59,7 +59,8 @@ body {
 .topnav {
   margin-top: 0px;
   overflow: hidden;
-  background-color: cyan;
+  background-color: #a0e743;
+  
   
 }
 
@@ -75,13 +76,13 @@ body {
 }
 
 .topnav a:hover {
-  background-color: cyan;
-  color: white;
+  background-color: #FF6937;
+  color: #252525;
 }
 
 .topnav a.active {
-  background-color: black;
-  color: cyan;
+  background-color: #252525;
+  color: #a0e743;
 }
 
 .topnav .search-container {

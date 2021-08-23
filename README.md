@@ -15,10 +15,13 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+#### Falta Fazer
+resolver o fundo escuro
+resolver a cor do car
+reduzir a luz do azul 
+responsivo ipad
+responsivo botão e pesquisa
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+installar apollo 
+puxar todos os dados em unica requisição
+refatorar informações

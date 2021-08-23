@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 8080
 const app = express()
 
 app.use('/',serveStatic(path.join(__dirname, '/dist')))
+app.use('/ep',serveStatic(path.join(__dirname, '/dist')))
 
 app.listen(PORT)
 console.log('Servidor Rodando________')
