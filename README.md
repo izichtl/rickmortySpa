@@ -1,27 +1,22 @@
-# rickmorty
+# RickMorty
 
-## Project setup
+## SinglePage em Vue consumindo GraphQl
+
+
+### Instalação
 ```
-npm install
+npm install 
 ```
 
-### Compiles and hot-reloads for development
+### Para rodar  
+```
+node index 
+```
+### Para desenvolver 
 ```
 npm run serve
+
+--antes de rodar
+npm run build - para atualizar a /dist 
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-#### Falta Fazer
-resolver o fundo escuro
-resolver a cor do car
-reduzir a luz do azul 
-responsivo ipad
-responsivo botão e pesquisa
-
-installar apollo 
-puxar todos os dados em unica requisição
-refatorar informações
